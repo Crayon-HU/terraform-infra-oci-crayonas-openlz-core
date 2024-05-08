@@ -4,7 +4,7 @@ provider "oci" {
   user_ocid    = var.USER_OCID
   private_key  = var.PRIVATE_KEY
   fingerprint  = var.FINGERPRINT
-  region       = "eu-frankfurt-1"
+  region       = "eu-amsterdam-1"
 }
 
 terraform {
@@ -18,9 +18,9 @@ terraform {
   backend "s3" {
     bucket         = "bcktpfraicterraform001"
     key            = "tfstate/openlz/core/openlz-core.compartments.tfstate"
-    region         = "eu-frankfurt-1"
+    region         = "eu-amsterdam-1"
     endpoints = {
-      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
+      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
     }
   }
 }
