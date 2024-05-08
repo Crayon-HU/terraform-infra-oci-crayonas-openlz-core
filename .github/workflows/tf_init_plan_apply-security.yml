@@ -12,6 +12,7 @@ jobs:
     with:
       backend_type: s3
       config_directory: terraform/security
+      provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
     secrets:
       aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
