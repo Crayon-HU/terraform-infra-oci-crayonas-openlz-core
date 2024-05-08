@@ -1,0 +1,26 @@
+name: Terraform workflow - compartments
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'terraform/compartments/**'
+
+jobs:
+  call_terraform_init_plan_apply:
+    uses: Crayon-HU/github-workflows/.github/workflows/workflow_tf_init_plan_apply.yml@init
+    with:
+      backend_type: s3
+      config_directory: terraform/compartments
+      provider_oci: true
+      github_owner: ${{ vars.GH_CRAYONHU_ORG }}
+    secrets:
+      aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
+      aws_secret_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_SECRET_KEY }}
+      aws_s3_bucket: ${{ secrets.OCI_CRAYON_S3_BUCKET }}
+      aws_s3_endpoint: ${{ secrets.OCI_CRAYON_S3_ENDPOINT }}
+      oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
+      oci_user: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
+      oci_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
+      oci_fingerprint: ${{ secrets.OCI_CRAYON_LEDERMAYER_FINGERPRINT }}
+      github_pat: ${{ secrets.GH_CRAYONHU_PAT }}
