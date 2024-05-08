@@ -16,11 +16,11 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = var.S3_BUCKET
-    key            = "tfstate/openlz-core/openlz-core.compartments.tfstate"
+    bucket         = "bcktpfraicterraform001"
+    key            = "tfstate/openlz/core/openlz-core.compartments.tfstate"
     region         = "eu-frankfurt-1"
     endpoints = {
-      s3 = var.S3_ENDPOINT
+      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-frankfurt-1.oraclecloud.com"
     }
   }
 }
