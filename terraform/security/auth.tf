@@ -7,9 +7,9 @@ provider "oci" {
   region       = "eu-amsterdam-1"
 }
 
-provider "aws" {
-  skip_requesting_account_id = true
-}
+# provider "aws" {
+#   skip_requesting_account_id = true
+# }
 
 terraform {
   required_version = ">= 1.6.0"
@@ -20,9 +20,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "bcktpfraicterraform001"
-    key            = "tfstate/openlz/core/openlz-core.security.tfstate"
-    region         = "eu-amsterdam-1"
+    bucket = "bcktpfraicterraform001"
+    key    = "tfstate/openlz/core/openlz-core.security.tfstate"
+    region = "eu-amsterdam-1"
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
     }
@@ -35,12 +35,13 @@ data "terraform_remote_state" "cmp" {
     bucket = "bcktpfraicterraform001"
     key    = "tfstate/openlz/core/openlz-core.compartments.tfstate"
     # region = "eu-amsterdam-1"
-    endpoints = {
-      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
-    }
-    skip_region_validation = true
+    endpoint                    = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
+    skip_region_validation      = true
     skip_credentials_validation = true
-    skip_metadata_api_check = true
-    use_path_style = true
+    skip_metadata_api_check     = true
+    skip_requesting_account_id  = true
+    skip_region_validation      = true
+    skip_s3_checksum            = true
+    use_path_style              = true
   }
 }
