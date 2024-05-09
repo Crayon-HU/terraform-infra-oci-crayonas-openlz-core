@@ -2,9 +2,6 @@
 data "oci_identity_compartment" "parent" {
   id = "ocid1.compartment.oc1..aaaaaaaavjic26327yzpleqiu77qvfaxxjobtsuili265urpkh7ac63afo3q"
 }
-# output "parent" {
-#   value = data.oci_identity_compartment.parent
-# }
 
 #cmp-root-openlz
 resource "oci_identity_compartment" "root" {
@@ -76,6 +73,4 @@ resource "oci_identity_compartment" "core" {
   freeform_tags  = each.value.tags
 }
 
-output "compartments" {
-  value = local.all_compartments
-}
+
