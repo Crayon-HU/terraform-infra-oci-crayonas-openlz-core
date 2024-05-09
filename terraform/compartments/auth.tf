@@ -16,9 +16,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "bcktpfraicterraform001"
-    key            = "tfstate/openlz/core/openlz-core.compartments.tfstate"
-    region         = "eu-amsterdam-1"
+    bucket = "bcktpfraicterraform001"
+    key    = "tfstate/openlz/core/openlz-core.compartments.tfstate"
+    region = "eu-amsterdam-1"
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
     }
