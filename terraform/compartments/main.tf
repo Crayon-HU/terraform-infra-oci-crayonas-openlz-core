@@ -1,6 +1,6 @@
 #HU_compartment
 data "oci_identity_compartment" "parent" {
-  id = "HU_compartment"
+  id = "ocid1.compartment.oc1..aaaaaaaavjic26327yzpleqiu77qvfaxxjobtsuili265urpkh7ac63afo3q"
 }
 output "parent" {
   value = data.oci_identity_compartment.parent
