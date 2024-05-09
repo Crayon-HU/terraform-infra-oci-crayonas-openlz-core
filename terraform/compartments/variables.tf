@@ -1,4 +1,12 @@
-variable "TENANCY_OCID" {}
-variable "USER_OCID" {}
-variable "PRIVATE_KEY" {}
-variable "FINGERPRINT" {}
+variable "TENANCY_OCID" {
+  sensitive = true
+}
+variable "USER_OCID" {
+  sensitive = true
+}
+variable "PRIVATE_KEY" {
+  sensitive = true
+}
+variable "FINGERPRINT" {
+  sensitive = true
+}
