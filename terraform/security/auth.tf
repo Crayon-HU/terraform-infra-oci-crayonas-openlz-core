@@ -22,6 +22,6 @@ terraform {
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
     }
-    workspace_key_prefix = ""
+    workspace_key_prefix = "tfstate"
   }
 }
