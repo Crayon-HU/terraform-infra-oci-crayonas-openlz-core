@@ -27,7 +27,7 @@ locals {
     }
     hub = {
       name        = "cmp-hub"
-      description = "Hub Compartment for the OpenLZ Project"
+      description = "Hub Network Compartment for the OpenLZ Project"
       enable_delete = local.enable_delete
       tags = local.tags
     }
@@ -62,6 +62,8 @@ locals {
   }
 
   compartments = merge(local.core_compartments, local.open_compartments)
+
+  all_compartments = merge({ for comp in oci_identity_compartment.core : comp.name => comp })
 }
 
 resource "oci_identity_compartment" "core" {
@@ -72,4 +74,8 @@ resource "oci_identity_compartment" "core" {
   enable_delete  = each.value.enable_delete
 
   freeform_tags = each.value.tags
+}
+
+output "compartments" {
+  value = local.all_compartments
 }
