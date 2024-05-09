@@ -7,10 +7,6 @@ provider "oci" {
   region       = "eu-amsterdam-1"
 }
 
-# provider "aws" {
-#   skip_requesting_account_id = true
-# }
-
 terraform {
   required_version = ">= 1.6.0"
   required_providers {
@@ -34,8 +30,9 @@ data "terraform_remote_state" "cmp" {
   config = {
     bucket = "bcktpfraicterraform001"
     key    = "tfstate/openlz/core/openlz-core.compartments.tfstate"
-    # region = "eu-amsterdam-1"
-    endpoint                    = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
+    endpoints = {
+      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
+    }
     skip_region_validation      = true
     skip_credentials_validation = true
     skip_metadata_api_check     = true
