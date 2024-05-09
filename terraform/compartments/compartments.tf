@@ -44,12 +44,12 @@ locals {
       enable_delete = local.enable_delete
       tags          = local.tags
     }
-    open02 = {
-      name          = "cmp-open02"
-      description   = "Operating Entity 02 Compartment for the OpenLZ Project"
-      enable_delete = local.enable_delete
-      tags          = local.tags
-    }
+    # open02 = {
+    #   name          = "cmp-open02"
+    #   description   = "Operating Entity 02 Compartment for the OpenLZ Project"
+    #   enable_delete = local.enable_delete
+    #   tags          = local.tags
+    # }
     open03 = {
       name          = "cmp-open03"
       description   = "Operating Entity 03 Compartment for the OpenLZ Project"
