@@ -20,44 +20,44 @@ locals {
   enable_delete = false
   core_compartments = {
     security = {
-      name        = "cmp-security"
-      description = "Security Compartment for the OpenLZ Project"
+      name          = "cmp-security"
+      description   = "Security Compartment for the OpenLZ Project"
       enable_delete = local.enable_delete
-      tags = local.tags
+      tags          = local.tags
     }
     hub = {
-      name        = "cmp-hub"
-      description = "Hub Network Compartment for the OpenLZ Project"
+      name          = "cmp-hub"
+      description   = "Hub Network Compartment for the OpenLZ Project"
       enable_delete = local.enable_delete
-      tags = local.tags
+      tags          = local.tags
     }
     mgmt = {
-      name        = "cmp-mgmt"
-      description = "Management Compartment for the OpenLZ Project"
+      name          = "cmp-mgmt"
+      description   = "Management Compartment for the OpenLZ Project"
       enable_delete = local.enable_delete
-      tags = local.tags
+      tags          = local.tags
     }
   }
 
   #Operating Entity Compartments
   open_compartments = {
     open01 = {
-      name        = "cmp-open01"
-      description = "Operating Entity 01 Compartment for the OpenLZ Project"
+      name          = "cmp-open01"
+      description   = "Operating Entity 01 Compartment for the OpenLZ Project"
       enable_delete = local.enable_delete
-      tags = local.tags
+      tags          = local.tags
     }
     open02 = {
-      name        = "cmp-open02"
-      description = "Operating Entity 02 Compartment for the OpenLZ Project"
+      name          = "cmp-open02"
+      description   = "Operating Entity 02 Compartment for the OpenLZ Project"
       enable_delete = local.enable_delete
-      tags = local.tags
+      tags          = local.tags
     }
     open03 = {
-      name        = "cmp-open03"
-      description = "Operating Entity 03 Compartment for the OpenLZ Project"
+      name          = "cmp-open03"
+      description   = "Operating Entity 03 Compartment for the OpenLZ Project"
       enable_delete = local.enable_delete
-      tags = local.tags
+      tags          = local.tags
     }
   }
 
@@ -67,13 +67,13 @@ locals {
 }
 
 resource "oci_identity_compartment" "core" {
-  for_each       = local.compartments
+  for_each = local.compartments
+
   compartment_id = oci_identity_compartment.root.id
   description    = each.value.description
   name           = each.value.name
   enable_delete  = each.value.enable_delete
-
-  freeform_tags = each.value.tags
+  freeform_tags  = each.value.tags
 }
 
 output "compartments" {

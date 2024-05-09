@@ -1,7 +1,7 @@
 locals {
   tags = {
-        "Team"      = "Industry Cloud"
-        "Project"   = "OpenLZ"
-        "Terraform" = "true"
-      }
+    "Team"      = "Industry Cloud"
+    "Project"   = "OpenLZ"
+    "Terraform" = "true"
+  }
 }

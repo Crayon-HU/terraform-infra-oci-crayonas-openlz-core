@@ -22,6 +22,17 @@ terraform {
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
     }
-    workspace_key_prefix = null
+  }
+}
+
+data "terraform_remote_state" "cmp" {
+  backend = "s3"
+  config = {
+    bucket = "bcktpfraicterraform001"
+    key    = "tfstate/openlz/core/openlz-core.compartments.tfstate"
+    region = "eu-amsterdam-1"
+    endpoints = {
+      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
+    }
   }
 }
