@@ -7,7 +7,7 @@ on:
       - 'terraform/compartments/**'
 
 jobs:
-  call_terraform_init_plan_apply:
+  tf_plan_apply:
     uses: Crayon-HU/github-workflows/.github/workflows/workflow_tf_init_plan_apply.yml@init
     with:
       backend_type: s3
