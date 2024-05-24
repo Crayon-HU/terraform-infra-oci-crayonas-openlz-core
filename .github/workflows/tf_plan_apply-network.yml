@@ -1,0 +1,27 @@
+name: Terraform workflow - network
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'terraform/network/**'
+
+jobs:
+  call_terraform_init_plan_apply:
+    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@v1
+    with:
+      backend_type: s3
+      config_directory: terraform/network
+      checkov_scan: true
+      provider_oci: true
+      github_owner: ${{ vars.GH_CRAYONHU_ORG }}
+    secrets:
+      azure_tenant_id: ${{ secrets.AZURE_CRAYONHU_TENANT_ID }}
+      azure_subscription_id: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_SUBSCRIPTION_ID }}
+      azure_client_id: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_CLIENT_ID }}
+      azure_client_secret: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_CLIENT_SECRET }}
+      azure_backend_resource_group: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_BACKEND_RESOURCE_GROUP }}
+      azure_backend_storage_account: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_BACKEND_STORAGE_ACCOUNT }}
+      azure_backend_storage_container: "tfstate-config-github"
+      azure_backend_storage_key: "github-core.tfstate"
+      github_pat: ${{ secrets.GH_CRAYONHU_PAT }} 
