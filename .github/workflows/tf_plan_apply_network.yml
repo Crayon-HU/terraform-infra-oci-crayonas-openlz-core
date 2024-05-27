@@ -1,10 +1,10 @@
-name: Terraform workflow - compartments
+name: Terraform workflow - network
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
-      - 'terraform/compartments/**'
+      - 'terraform/network/**'
 
 jobs:
   tf_plan_apply:
@@ -12,7 +12,7 @@ jobs:
     with:
       runner: OCI_hosted
       backend_type: pg
-      config_directory: terraform/compartments
+      config_directory: terraform/network
       # checkov_scan: true
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}

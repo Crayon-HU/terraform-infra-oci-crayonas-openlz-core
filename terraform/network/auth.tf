@@ -27,4 +27,3 @@ data "terraform_remote_state" "cmp" {
     schema_name = "terraform/compartments"
   }
 }
-

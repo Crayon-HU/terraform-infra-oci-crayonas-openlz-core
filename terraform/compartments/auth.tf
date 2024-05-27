@@ -15,13 +15,7 @@ terraform {
       version = "5.38.0"
     }
   }
-  backend "s3" {
-    bucket = "bcktpfraicterraform001"
-    key    = "tfstate/openlz/core/openlz-core.compartments.tfstate"
-    region = "eu-amsterdam-1"
-    endpoints = {
-      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
-    }
+  backend "pg" {
+    conn_str = "postgres://rn47x2kesus3kbbiylxgrjsl6dzdwq-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/core"
   }
 }
-
