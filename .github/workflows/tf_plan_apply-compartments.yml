@@ -12,8 +12,10 @@ jobs:
     with:
       runner: OCI_hosted
       backend_type: pg
-      infra_repo: terraform-infra-oci-crayonas-openlz-core@bootstrap
-      config_repo: terraform-config-oci-crayonas-openlz-core@init
+      infra_repo: terraform-infra-oci-crayonas-openlz-core
+      infra_repo_ref: bootstrap
+      config_repo: terraform-config-oci-crayonas-openlz-core
+      config_repo_ref: init
       config_directory: compartments
       # checkov_scan: true
       provider_oci: true
