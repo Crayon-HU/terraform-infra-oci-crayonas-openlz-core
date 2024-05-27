@@ -1,0 +1,36 @@
+name: Terraform workflow - network
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'terraform/network/**'
+
+jobs:
+  tf_plan_apply:
+    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@pg-backend
+    with:
+      backend_type: pg
+      config_directory: terraform/network
+      # checkov_scan: true
+      provider_oci: true
+      github_owner: ${{ vars.GH_CRAYONHU_ORG }}
+      #Postgres backend
+      pg_backend_host: ${{ vars.OCI_CRAYON_PGBACKEND_HOST }}
+      pg_backend_port: ${{ vars.OCI_CRAYON_PGBACKEND_PORT }}
+      pg_backend_database: ${{ vars.OCI_CRAYON_PGBACKEND_DATABASE }}
+      # pg_backend_schema: ${{ vars.OCI_CRAYON_PGBACKEND_SCHEMA }}
+      # pg_backend_skip_schema_creation: false
+      # pg_backend_skip_table_creation: false
+      # pg_backend_skip_index_creation: false
+
+    secrets:
+      # aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
+      # aws_secret_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_SECRET_KEY }}
+      pg_backend_username: ${{ secrets.OCI_CRAYON_PGBACKEND_USERNAME }}
+      pg_backend_password: ${{ secrets.OCI_CRAYON_PGBACKEND_PASSWORD }}
+      oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
+      oci_user: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
+      oci_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
+      oci_fingerprint: ${{ secrets.OCI_CRAYON_LEDERMAYER_FINGERPRINT }}
+      github_pat: ${{ secrets.GH_CRAYONHU_PAT }}

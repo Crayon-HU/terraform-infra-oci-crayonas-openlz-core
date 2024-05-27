@@ -8,7 +8,7 @@ on:
 
 jobs:
   tf_plan_apply:
-    uses: Crayon-HU/github-workflows/.github/workflows/workflow_tf_init_plan_apply.yml@init
+    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@v1
     with:
       backend_type: s3
       config_directory: terraform/security
