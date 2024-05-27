@@ -5,23 +5,139 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - 'terraform/network/**'
-
+    
 jobs:
-  call_terraform_init_plan_apply:
-    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@v1
-    with:
-      backend_type: s3
-      config_directory: terraform/network
-      checkov_scan: true
-      provider_oci: true
-      github_owner: ${{ vars.GH_CRAYONHU_ORG }}
-    secrets:
-      azure_tenant_id: ${{ secrets.AZURE_CRAYONHU_TENANT_ID }}
-      azure_subscription_id: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_SUBSCRIPTION_ID }}
-      azure_client_id: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_CLIENT_ID }}
-      azure_client_secret: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_CLIENT_SECRET }}
-      azure_backend_resource_group: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_BACKEND_RESOURCE_GROUP }}
-      azure_backend_storage_account: ${{ secrets.AZURE_CRAYONHU_TFCOMMON_BACKEND_STORAGE_ACCOUNT }}
-      azure_backend_storage_container: "tfstate-config-github"
-      azure_backend_storage_key: "github-core.tfstate"
-      github_pat: ${{ secrets.GH_CRAYONHU_PAT }} 
+  terraform_plan:
+    runs-on: self-hosted
+    name: Plan Terraform Configuration
+    env:
+      TF_VAR_TENANCY_OCID: ${{ secrets.OCI_CRAYON_TENANCY }}
+      TF_VAR_USER_OCID: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
+      TF_VAR_PRIVATE_KEY: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
+      TF_VAR_FINGERPRINT: ${{ secrets.OCI_CRAYON_LEDERMAYER_FINGERPRINT }}
+
+    steps:
+      - name: Set GitHub environment variables
+        run: |
+          echo "GITHUB_TOKEN=${{ secrets.GH_CRAYONHU_PAT }}" >> $GITHUB_ENV
+          echo "GITHUB_OWNER=${{ vars.GH_CRAYONHU_ORG }}" >> $GITHUB_ENV
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.8.2'
+          terraform_wrapper: false
+      
+      - name: Terraform Init with PostgreSQL backend
+        id: init_pg_backend
+        working-directory: terraform/network
+        run: |
+          terraform init
+
+      - name: Terraform Plan
+        id: plan
+        working-directory: terraform/network
+        run: |
+          terraform plan -no-color -out=plan_output.tfplan | tee plan_output.txt
+
+      - name: Convert Plan to JSON
+        id: plan_to_json
+        working-directory: terraform/network
+        run: |
+          terraform show -json plan_output.tfplan > plan_output.json
+
+      - name: Upload Plan JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-json
+          path: terraform/network/plan_output.json
+
+      - name: Upload Plan File
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-file
+          path: terraform/network/plan_output.tfplan
+
+      - name: Comment Plan Output
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GH_CRAYONHU_PAT }}
+          script: |
+            const fs = require('fs');
+            const planOutput = fs.readFileSync('${{ github.workspace }}/terraform/network/plan_output.txt', 'utf8');
+            const output = `
+              <details>
+              <summary>terraform/network - Terraform Plan Output (click to expand)</summary>
+              \n\`\`\`\n${planOutput}\n\`\`\`
+              </details>
+            `;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });
+  
+  tf_step_apply:
+    runs-on: self-hosted
+    name: Apply Terraform Configuration
+    env:
+      TF_VAR_TENANCY_OCID: ${{ secrets.OCI_CRAYON_TENANCY }}
+      TF_VAR_USER_OCID: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
+      TF_VAR_PRIVATE_KEY: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
+      TF_VAR_FINGERPRINT: ${{ secrets.OCI_CRAYON_LEDERMAYER_FINGERPRINT }}
+
+    steps:
+      - name: Set GitHub environment variables
+        run: |
+          echo "GITHUB_TOKEN=${{ secrets.GH_CRAYONHU_PAT }}" >> $GITHUB_ENV
+          echo "GITHUB_OWNER=${{ inputs.GH_CRAYONHU_ORG }}" >> $GITHUB_ENV
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.8.2'
+          terraform_wrapper: false
+
+      - name: Download Plan File
+        uses: actions/download-artifact@v4
+        with:
+          name: tfplan-file
+          path: terraform/network
+
+      - name: Terraform Init with PostgreSQL backend
+        id: init_backend_pg
+        working-directory: terraform/network
+        run: |
+          terraform init
+
+      - name: Terraform Apply
+        id: apply
+        working-directory: terraform/network
+        run: |
+          terraform apply -auto-approve "plan_output.tfplan" > apply_output.txt
+          apply_output=$(grep '^Apply' apply_output.txt)
+          echo "::set-output name=stdout::$apply_output"
+
+      - name: Comment Apply Output
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GH_CRAYONHU_PAT }}
+          script: |
+            const applyOutput = 'terraform/network - ${{ steps.apply.outputs.stdout }}';
+            if (applyOutput) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: applyOutput
+              });
+            }

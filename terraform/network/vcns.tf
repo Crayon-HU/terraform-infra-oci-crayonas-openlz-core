@@ -1,8 +1,4 @@
 #mgmnt compartment
-data "oci_identity_groups" "cmp_mgmt" {
-    compartment_id = 
-}
-
 resource "oci_core_vcn" "vcn" {
   cidr_blocks    = ["11.0.0.0/16"]
   dns_label      = "vcn"
