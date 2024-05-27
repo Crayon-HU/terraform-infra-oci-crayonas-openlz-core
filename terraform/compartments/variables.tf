@@ -1,3 +1,4 @@
+#TF_VAR Variables
 variable "TENANCY_OCID" {
   sensitive = true
 }
@@ -11,3 +12,7 @@ variable "PRIVATE_KEY" {
 variable "FINGERPRINT" {
   sensitive = true
 }
+
+#Config Variables
+variable "core_compartments" {}
+variable "open_compartments" {}
