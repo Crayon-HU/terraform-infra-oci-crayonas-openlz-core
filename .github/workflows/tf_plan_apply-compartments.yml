@@ -16,21 +16,12 @@ jobs:
       # checkov_scan: true
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
-      #Postgres backend
-      # pg_backend_host: ${{ vars.OCI_CRAYON_PGBACKEND_HOST }}
-      # pg_backend_port: ${{ vars.OCI_CRAYON_PGBACKEND_PORT }}
-      # pg_backend_database: ${{ vars.OCI_CRAYON_PGBACKEND_DATABASE }}
-      pg_backend_schema: network
-      pg_backend_skip_schema_creation: true
-      # pg_backend_skip_table_creation: false
-      # pg_backend_skip_index_creation: false
 
     secrets:
       # aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
       # aws_secret_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_SECRET_KEY }}
-      # pg_backend_connection_string: ${{ secrets.OCI_CRAYON_PGBACKEND_CONNECTION_STRING }}
-      pg_backend_username: ${{ secrets.OCI_CRAYON_PGBACKEND_USERNAME }}
-      pg_backend_password: ${{ secrets.OCI_CRAYON_PGBACKEND_PASSWORD }}
+      pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
+      pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
       oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
       oci_user: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
       oci_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
