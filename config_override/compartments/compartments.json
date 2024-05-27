@@ -1,0 +1,34 @@
+{
+  "core_compartments" : {
+    "security" : {
+      "name"          : "cmp-security",
+      "description"   : "Security Compartment for the OpenLZ Project - Override Description"
+    },
+    "hub" : {
+      "name"          : "cmp-hub",
+      "description"   : "Hub Network Compartment for the OpenLZ Project - Override Description"
+    },
+    "mgmt" : {
+      "name"          : "cmp-mgmt",
+      "description"   : "Management Compartment for the OpenLZ Project - Override Description"
+    }
+  },
+  "open_compartments" : {
+    "open01" : {
+      "name"          : "cmp-open01",
+      "description"   : "Operating Entity 01 Compartment for the OpenLZ Project - Override Description"
+    },
+    "open02" : {
+      "name"          : "cmp-open02",
+      "description"   : "Operating Entity 02 Compartment for the OpenLZ Project - Override Description"
+    },
+    "open03" : {
+      "name"          : "cmp-open03",
+      "description"   : "Operating Entity 03 Compartment for the OpenLZ Project - Override Description"
+    },
+    "open04" : {
+      "name"          : "cmp-open04",
+      "description"   : "Operating Entity 04 Compartment for the OpenLZ Project - Override Description"
+    }
+  }
+}

@@ -8,18 +8,18 @@ on:
 
 jobs:
   tf_plan_apply:
-    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@pg-backend
+    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@config-step
     with:
       runner: OCI_hosted
       backend_type: pg
-      config_directory: terraform/compartments
+      infra_repo: terraform-infra-oci-crayonas-openlz-core@bootstrap
+      config_repo: terraform-config-oci-crayonas-openlz-core@init
+      config_directory: compartments
       # checkov_scan: true
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
 
     secrets:
-      # aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
-      # aws_secret_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_SECRET_KEY }}
       pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
       pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
       oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
