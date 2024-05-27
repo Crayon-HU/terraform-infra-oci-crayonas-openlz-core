@@ -28,7 +28,7 @@ jobs:
     secrets:
       # aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
       # aws_secret_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_SECRET_KEY }}
-      pg_backend_connection_string: ${{ secrets.OCI_CRAYON_PGBACKEND_CONNECTION_STRING }}
+      # pg_backend_connection_string: ${{ secrets.OCI_CRAYON_PGBACKEND_CONNECTION_STRING }}
       pg_backend_username: ${{ secrets.OCI_CRAYON_PGBACKEND_USERNAME }}
       pg_backend_password: ${{ secrets.OCI_CRAYON_PGBACKEND_PASSWORD }}
       oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
