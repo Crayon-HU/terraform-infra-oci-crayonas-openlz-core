@@ -35,6 +35,7 @@ data "terraform_remote_state" "cmp" {
     skip_region_validation      = true
     skip_s3_checksum            = true
     use_path_style              = true
+    region = "eu-amsterdam-1"
   }
 }
 
