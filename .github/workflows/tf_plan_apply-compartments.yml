@@ -8,11 +8,12 @@ on:
 
 jobs:
   tf_plan_apply:
-    uses: Crayon-HU/github-workflows/.github/workflows/workflow_tf_init_plan_apply.yml@init
+    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@init
     with:
+      runner: self-hosted
       backend_type: s3
       config_directory: terraform/compartments
-      # checkov_scan: true
+      checkov_scan: false
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
     secrets:
