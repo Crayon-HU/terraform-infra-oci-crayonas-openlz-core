@@ -16,26 +16,13 @@ terraform {
     }
   }
   backend "pg" {
-    conn_str = "postgres://rn47x2kesus3kbbiylxgrjsl6dzdwq-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/terraform_backend"
+    conn_str = "postgres://rn47x2kesus3kbbiylxgrjsl6dzdwq-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/core"
   }
 }
 
-# data "terraform_remote_state" "cmp" {
-#   backend = "s3"
-#   config = {
-#     bucket = "bcktpfraicterraform001"
-#     key    = "tfstate/openlz/core/openlz-core.compartments.tfstate"
-#     endpoints = {
-#       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
-#     }
-#     skip_region_validation      = true
-#     skip_credentials_validation = true
-#     skip_metadata_api_check     = true
-#     skip_requesting_account_id  = true
-#     skip_region_validation      = true
-#     skip_s3_checksum            = true
-#     use_path_style              = true
-#     region = "eu-amsterdam-1"
-#   }
-# }
-
+data "terraform_remote_state" "cmp" {
+  backend = "pg"
+  config = {
+    conn_str = "postgres://rn47x2kesus3kbbiylxgrjsl6dzdwq-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/core"
+  }
+}
