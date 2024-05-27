@@ -20,7 +20,7 @@ jobs:
       # pg_backend_host: ${{ vars.OCI_CRAYON_PGBACKEND_HOST }}
       # pg_backend_port: ${{ vars.OCI_CRAYON_PGBACKEND_PORT }}
       # pg_backend_database: ${{ vars.OCI_CRAYON_PGBACKEND_DATABASE }}
-      # pg_backend_schema: ${{ vars.OCI_CRAYON_PGBACKEND_SCHEMA }}
+      # pg_backend_schema: network
       # pg_backend_skip_schema_creation: false
       # pg_backend_skip_table_creation: false
       # pg_backend_skip_index_creation: false
