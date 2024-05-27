@@ -10,6 +10,7 @@ jobs:
   tf_plan_apply:
     uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@pg-backend
     with:
+      runner: OCI_hosted
       backend_type: pg
       config_directory: terraform/network
       # checkov_scan: true
