@@ -16,7 +16,7 @@ terraform {
     }
   }
   backend "pg" {
-    conn_str = "rn47x2kesus3kbbiylxgrjsl6dzdwq-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/terraform_backend"
+    conn_str = "postgres://rn47x2kesus3kbbiylxgrjsl6dzdwq-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/terraform_backend"
   }
 }
 
