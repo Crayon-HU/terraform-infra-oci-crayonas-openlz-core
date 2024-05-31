@@ -10,5 +10,16 @@
       "name"          : "cmp-open01",
       "description"   : "Operating Entity 01 Compartment for the OpenLZ Project - Override Description"
     }
+  },
+  "test" : {
+    "new_key" : {
+      "value" : "value"
+    },
+    "existing_key" : {
+      "value2" : {
+        "value10" : "value10",
+        "value11" : "value11"
+      }
+    }
   }
 }

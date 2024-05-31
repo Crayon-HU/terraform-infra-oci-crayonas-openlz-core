@@ -8,4 +8,4 @@
 
 # Read secrets and variables from oci vault
 
-# Set up environment variables
+# Set up repo or environment variables

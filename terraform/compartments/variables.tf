@@ -1,4 +1,4 @@
-#TF_VAR Variables
+#TF_VAR_ Variables
 variable "TENANCY_OCID" {
   sensitive = true
 }

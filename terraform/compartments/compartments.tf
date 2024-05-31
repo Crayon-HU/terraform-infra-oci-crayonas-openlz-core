@@ -79,4 +79,10 @@ resource "oci_identity_compartment" "core" {
   freeform_tags  = each.value.tags
 }
 
+output "core_compartments" {
+  value = var.core_compartments
+}
 
+output "open_compartments" {
+  value = var.open_compartments
+}
