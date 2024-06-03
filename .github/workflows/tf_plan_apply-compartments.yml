@@ -22,10 +22,10 @@ jobs:
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
 
     secrets:
-      # pg_backend_username: ${{ secrets.OCI_CRAYON_PGBACKEND_USERNAME }}
-      # pg_backend_password: ${{ secrets.OCI_CRAYON_PGBACKEND_PASSWORD }}
-      pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
-      pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
+      pg_backend_username: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_USERNAME }}
+      pg_backend_password: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_PASSWORD }}
+      # pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
+      # pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
       oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
       oci_user: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
       oci_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
