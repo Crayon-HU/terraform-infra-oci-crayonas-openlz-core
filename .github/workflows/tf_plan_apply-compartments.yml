@@ -8,7 +8,7 @@ on:
 
 jobs:
   tf_plan_apply:
-    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@config-step
+    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@environments
     with:
       runner: OCI_hosted
       backend_type: pg
@@ -20,7 +20,6 @@ jobs:
       # checkov_scan: true
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
-
     secrets:
       # pg_backend_username: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_USERNAME }}
       # pg_backend_password: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_PASSWORD }}
