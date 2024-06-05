@@ -62,6 +62,12 @@ locals {
       enable_delete = local.enable_delete
       tags          = local.tags
     }
+    open05 = {
+      name          = "cmp-open05"
+      description   = "Operating Entity 05 Compartment for the OpenLZ Project"
+      enable_delete = local.enable_delete
+      tags          = local.tags
+    }
   }
 
   compartments = merge(local.core_compartments, local.open_compartments)
