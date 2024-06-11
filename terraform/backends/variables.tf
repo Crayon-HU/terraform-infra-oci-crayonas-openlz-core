@@ -14,10 +14,15 @@ variable "FINGERPRINT" {
 }
 
 #Config Variables
-variable "core_compartments" {}
-variable "open_compartments" {}
-
-variable "POSTGRES_SERVER_IP" {}
-variable "POSTGRES_SERVER_PORT" {} 
-variable "POSTGRES_ADMIN_USERNAME" {}
-variable "POSTGRES_ADMIN_PASSWORD" {}
+variable "POSTGRES_SERVER_IP" {
+  sensitive = true
+}
+variable "POSTGRES_SERVER_PORT" {
+  sensitive = true
+} 
+variable "POSTGRES_ADMIN_USERNAME" {
+  sensitive = true
+}
+variable "POSTGRES_ADMIN_PASSWORD" {
+  sensitive = true
+}
