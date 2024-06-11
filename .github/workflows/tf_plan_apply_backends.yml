@@ -1,10 +1,10 @@
-name: Terraform workflow - network
+name: Terraform workflow - backends
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
-      - 'terraform/network/**'
+      - 'terraform/backends/**'
 
 jobs:
   tf_plan_apply:
@@ -16,7 +16,7 @@ jobs:
       infra_repo_ref: bootstrap
       config_repo: terraform-config-oci-crayonas-openlz-core
       config_repo_ref: init
-      config_directory: network
+      config_directory: backends
       # checkov_scan: true
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
