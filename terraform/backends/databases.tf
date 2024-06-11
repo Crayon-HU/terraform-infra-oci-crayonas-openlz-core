@@ -1,6 +1,6 @@
-resource postgresql_database "core" {
-  name = "core"
-}
+# resource postgresql_database "core" {
+#   name = "core"
+# }
 
 resource postgresql_database "mgmt" {
   name = "mgmt"
