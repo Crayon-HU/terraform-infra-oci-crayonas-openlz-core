@@ -12,7 +12,7 @@ resource "postgresql_role" "mgmt_role" {
   password = "mypass"
 }
 
-# Grant SELECT privileges on 2 tables
+# Grant priviliges on the database
 resource "postgresql_grant" "mgmt_grant" {
   database    = postgresql_database.mgmt_db.name
   role        = postgresql_role.mgmt_role.name
