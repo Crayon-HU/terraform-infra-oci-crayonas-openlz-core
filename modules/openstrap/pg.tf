@@ -1,5 +1,7 @@
 # pg.tf
 
+# Generate secrets in vault
+
 # Create Postgres database
 
 # Create service roles from oci service accounts

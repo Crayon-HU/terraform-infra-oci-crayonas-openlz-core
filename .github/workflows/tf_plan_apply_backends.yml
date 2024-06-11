@@ -8,9 +8,6 @@ on:
 
 jobs:
   tf_plan_apply:
-    env:
-      TF_VAR_BACKEND_USERNAME: ${{ secrets.OCI_PGBACKEND_USER }}
-      TF_VAR_BACKEND_PASSWORD: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
     uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@v1.2.0
     with:
       runner: OCI_hosted

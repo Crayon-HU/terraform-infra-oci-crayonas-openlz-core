@@ -20,6 +20,3 @@ variable "POSTGRES_SERVER_IP" {
 variable "POSTGRES_SERVER_PORT" {
   sensitive = true
 } 
-variable "POSTGRES_ADMIN_USERNAME" {
-  sensitive = true
-}
