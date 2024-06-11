@@ -17,5 +17,5 @@ resource "postgresql_grant" "mgmt_grant" {
   database    = postgresql_database.mgmt_db.name
   role        = postgresql_role.mgmt_role.name
   object_type = "database"
-  privileges  = ["USAGE"]
+  privileges  = ["ALL"]
 }
