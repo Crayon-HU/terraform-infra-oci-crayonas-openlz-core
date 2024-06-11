@@ -10,8 +10,8 @@ provider "oci" {
 provider "postgresql" {
   host            = var.POSTGRES_SERVER_IP
   port            = var.POSTGRES_SERVER_PORT
-  username        = var.POSTGRES_ADMIN_USERNAME
-  password        = var.POSTGRES_ADMIN_PASSWORD
+  username        = var.BACKEND_USERNAME
+  password        = var.BACKEND_PASSWORD
   sslmode         = "require"
   connect_timeout = 15
 }
