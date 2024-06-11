@@ -2,12 +2,20 @@
 #   name = "core"
 # }
 
-resource postgresql_database "mgmt" {
+resource "postgresql_database" "mgmt_db" {
   name = "mgmt"
 }
 
-resource "postgresql_role" "mgmt" {
+resource "postgresql_role" "mgmt_role" {
   name     = "mgmt"
   login    = true
   password = "mypass"
+}
+
+# Grant SELECT privileges on 2 tables
+resource "postgresql_grant" "mgmt_grant" {
+  database    = postgresql_database.mgmt_db.name
+  role        = postgresql_role.mgmt_role.name
+  object_type = "database"
+  privileges  = ["USAGE"]
 }
