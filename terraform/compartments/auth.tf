@@ -25,6 +25,6 @@ terraform {
     endpoint = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
     dynamodb_endpoint = "https://cbwpnkclljkw26rjvgi3kjdmoe.apigateway.eu-amsterdam-1.oci.customer-oci.com"
     key = "compartments.tfstate"
-    dynamodb_table = "core"
+    dynamodb_table = "s3-locking-demo"
   }
 }
