@@ -26,7 +26,7 @@ terraform {
     # skip_s3_checksum            = true
 
     endpoints = {
-      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
+      s3 = "https://ax7yjiuzhoio.objectstorage.eu-amsterdam-1.oci.customer-oci.com"
       dynamodb = "https://ejeigp5zu4efrvexanslfcob4a.apigateway.eu-amsterdam-1.oci.customer-oci.com"
     }
     key = "compartments.tfstate"
