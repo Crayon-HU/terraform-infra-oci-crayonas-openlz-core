@@ -29,9 +29,6 @@ terraform {
     # skip_requesting_account_id  = true
     # skip_s3_checksum            = true
 
-    access_key = "4794d5525ffcdaf0421003566dcb7cea87d33ea0"
-    secret_key = "5ZXaaQtZgdG9IWzQWzMfykqfq33odrAn7mQczliDqMo="
-
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
       dynamodb = "https://cbwpnkclljkw26rjvgi3kjdmoe.apigateway.eu-amsterdam-1.oci.customer-oci.com"
