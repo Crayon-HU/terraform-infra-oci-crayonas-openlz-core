@@ -16,7 +16,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "bcktpfraicterraform001"
+    bucket = "tfstate-bucket-rdoxii"
     region = "eu-amsterdam-1"
 
     skip_region_validation      = true
@@ -27,7 +27,7 @@ terraform {
 
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
-      dynamodb = "https://ejeigp5zu4efrvexanslfcob4a.apigateway.eu-amsterdam-1.oci.customer-oci.com"
+      dynamodb = "https://dhl3zddumkimn2micut3c6jjpm.apigateway.eu-amsterdam-1.oci.customer-oci.com"
     }
     key = "compartments.tfstate"
     dynamodb_table = "s3-locking-demo"
