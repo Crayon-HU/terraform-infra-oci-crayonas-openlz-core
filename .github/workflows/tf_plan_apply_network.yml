@@ -1,10 +1,10 @@
 name: Terraform workflow - network
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - 'terraform/network/**'
+# on:
+#   pull_request:
+#     types: [opened, synchronize, reopened]
+#     paths:
+#       - 'terraform/network/**'
 
 jobs:
   tf_plan_apply:
