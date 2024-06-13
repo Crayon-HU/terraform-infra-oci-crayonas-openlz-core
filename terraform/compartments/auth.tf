@@ -29,7 +29,7 @@ terraform {
     # skip_requesting_account_id  = true
     # skip_s3_checksum            = true
 
-    access_key = "4794d5525ffcdaf0421003566dcb7cea87d33ea0"
+    #access_key = "4794d5525ffcdaf0421003566dcb7cea87d33ea0"
 
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
