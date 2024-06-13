@@ -20,7 +20,7 @@ terraform {
   #   # conn_str = "postgres://rn47x2kesus3kbbiylxgrjsl6dzdwq-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/core" #Old
   # }
   backend "s3" {
-    bucket = "tf-state-bucket-bweoam"
+    bucket = "tf-state-bucket-oudgrz"
     region = "eu-amsterdam-1"
 
     skip_region_validation      = true
@@ -31,7 +31,7 @@ terraform {
 
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
-      dynamodb = "https://cbwpnkclljkw26rjvgi3kjdmoe.apigateway.eu-amsterdam-1.oci.customer-oci.com"
+      dynamodb = "https://ejeigp5zu4efrvexanslfcob4a.apigateway.eu-amsterdam-1.oci.customer-oci.com"
     }
     key = "compartments.tfstate"
     dynamodb_table = "s3-locking-demo"
