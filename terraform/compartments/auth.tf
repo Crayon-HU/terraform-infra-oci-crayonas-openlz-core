@@ -29,8 +29,6 @@ terraform {
     # skip_requesting_account_id  = true
     # skip_s3_checksum            = true
 
-    force_path_style = true
-    
     endpoint = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
     dynamodb_endpoint = "https://cbwpnkclljkw26rjvgi3kjdmoe.apigateway.eu-amsterdam-1.oci.customer-oci.com"
     key = "compartments.tfstate"
