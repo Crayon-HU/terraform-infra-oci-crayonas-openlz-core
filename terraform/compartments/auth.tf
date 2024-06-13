@@ -16,7 +16,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "tf-state-bucket-oudgrz"
+    bucket = "bcktpfraicterraform001"
     region = "eu-amsterdam-1"
 
     skip_region_validation      = true
@@ -26,7 +26,7 @@ terraform {
     # skip_s3_checksum            = true
 
     endpoints = {
-      s3 = "https://ax7yjiuzhoio.objectstorage.eu-amsterdam-1.oci.customer-oci.com"
+      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
       dynamodb = "https://ejeigp5zu4efrvexanslfcob4a.apigateway.eu-amsterdam-1.oci.customer-oci.com"
     }
     key = "compartments.tfstate"
