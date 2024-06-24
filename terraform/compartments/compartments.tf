@@ -64,7 +64,7 @@ locals {
     }
     open05 = {
       name          = "cmp-open05"
-      description   = "Operating Entity 05 Compartment for the OpenLZ Project change7"
+      description   = "Operating Entity 05 Compartment for the OpenLZ Project change8"
       enable_delete = local.enable_delete
       tags          = local.tags
     }
