@@ -35,7 +35,7 @@ jobs:
     uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@environments
     with:
       runner: OCI_hosted
-      backend_type: s3
+      backend_type: pg
       infra_repo: terraform-infra-oci-crayonas-openlz-core
       infra_repo_ref: bootstrap
       config_repo: terraform-config-oci-crayonas-openlz-core
@@ -45,14 +45,14 @@ jobs:
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
     secrets:
-      # pg_backend_username: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_USERNAME }}
-      # pg_backend_password: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_PASSWORD }}
-      # pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
-      # pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
-      # aws_access_key: ${{ secrets.OCI_CRAYON_PETERBAKO_ACCESS_KEY }}
-      # aws_secret_key: ${{ secrets.OCI_CRAYON_PETERBAKO_SECRET_KEY }}
-      aws_access_key: ${{ secrets.OCI_CRAYONHU_SPINNERBOT_ACCESS_KEY }}
-      aws_secret_key: ${{ secrets.OCI_CRAYONHU_SPINNERBOT_SECRET_KEY }}
+      pg_backend_username: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_USERNAME }}
+      pg_backend_password: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_PASSWORD }}
+            # pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
+            # pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
+            # aws_access_key: ${{ secrets.OCI_CRAYON_PETERBAKO_ACCESS_KEY }}
+            # aws_secret_key: ${{ secrets.OCI_CRAYON_PETERBAKO_SECRET_KEY }}
+      # aws_access_key: ${{ secrets.OCI_CRAYONHU_SPINNERBOT_ACCESS_KEY }}
+      # aws_secret_key: ${{ secrets.OCI_CRAYONHU_SPINNERBOT_SECRET_KEY }}
       oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
       oci_user: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
       oci_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
