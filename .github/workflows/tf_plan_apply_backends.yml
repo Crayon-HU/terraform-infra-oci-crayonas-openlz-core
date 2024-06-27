@@ -1,13 +1,13 @@
 name: Terraform workflow - backends
 
-on:
-  workflow_dispatch:
-
 # on:
-#   pull_request:
-#     types: [opened, synchronize, reopened]
-#     paths:
-#       - 'terraform/backends/**'
+#   workflow_dispatch
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'terraform/backends/**'
 
 jobs:
   tf_plan_apply:
