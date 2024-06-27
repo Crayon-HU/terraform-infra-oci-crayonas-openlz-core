@@ -45,10 +45,10 @@ jobs:
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
     secrets:
-      pg_backend_username: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_USERNAME }}
-      pg_backend_password: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_PASSWORD }}
-            # pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
-            # pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
+            # pg_backend_username: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_USERNAME }}
+            # pg_backend_password: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_PASSWORD }}
+      pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
+      pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
             # aws_access_key: ${{ secrets.OCI_CRAYON_PETERBAKO_ACCESS_KEY }}
             # aws_secret_key: ${{ secrets.OCI_CRAYON_PETERBAKO_SECRET_KEY }}
       # aws_access_key: ${{ secrets.OCI_CRAYONHU_SPINNERBOT_ACCESS_KEY }}
