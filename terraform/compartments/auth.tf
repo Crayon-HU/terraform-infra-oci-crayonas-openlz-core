@@ -15,21 +15,24 @@ terraform {
       version = "5.38.0"
     }
   }
-  backend "s3" {
-    bucket = "tfstate-bucket-rdoxii"
-    region = "eu-amsterdam-1"
+  # backend "s3" {
+  #   bucket = "tfstate-bucket-rdoxii"
+  #   region = "eu-amsterdam-1"
 
-    skip_region_validation      = true
-    skip_credentials_validation = true
-    skip_metadata_api_check     = true
-    # skip_requesting_account_id  = true
-    # skip_s3_checksum            = true
+  #   skip_region_validation      = true
+  #   skip_credentials_validation = true
+  #   skip_metadata_api_check     = true
+  #   # skip_requesting_account_id  = true
+  #   # skip_s3_checksum            = true
 
-    endpoints = {
-      s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
-      dynamodb = "https://dhl3zddumkimn2micut3c6jjpm.apigateway.eu-amsterdam-1.oci.customer-oci.com"
-    }
-    key = "compartments.tfstate"
-    dynamodb_table = "s3-locking-demo"
+  #   endpoints = {
+  #     s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
+  #     dynamodb = "https://dhl3zddumkimn2micut3c6jjpm.apigateway.eu-amsterdam-1.oci.customer-oci.com"
+  #   }
+  #   key = "compartments.tfstate"
+  #   dynamodb_table = "s3-locking-demo"
+  # }
+  backend "pg" {
+    conn_str = "postgres://pxe2wx6joe2zfcn7xdtad5hyqydi5q-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/core"
   }
 }
