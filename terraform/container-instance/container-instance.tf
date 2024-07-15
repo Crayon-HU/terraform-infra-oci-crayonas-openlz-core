@@ -8,6 +8,16 @@ data "oci_identity_availability_domains" "local_ads" {
   compartment_id = data.oci_identity_compartment.parent.id
 }
 
+data "oci_secrets_secretbundle" "AWS_ACCESS_KEY_ID_bundle" {
+    #Required
+    secret_id = "ocid1.vaultsecret.oc1.eu-amsterdam-1.amaaaaaa343laxaaimhzsf4lvy7twkc53xuisrturfxplizonmq7jwwm42sa"
+}
+
+data "oci_secrets_secretbundle" "AWS_SECRET_ACCESS_KEY_bundle" {
+    #Required
+    secret_id = "ocid1.vaultsecret.oc1.eu-amsterdam-1.amaaaaaa343laxaaqjqiklctjj75mlcckukjy6z3jbsyowqpimsdfwwvcw6q"
+}
+
 resource "oci_container_instances_container_instance" "demo_container_instance" {
 
   # create the container instance in AD1
@@ -41,7 +51,10 @@ resource "oci_container_instances_container_instance" "demo_container_instance" 
         content {
             display_name          = try(containers.value.display_name, null)
             image_url             = containers.value.image_url
-            environment_variables = try(containers.value.environment_variables, null)
+            environment_variables = {
+              AWS_ACCESS_KEY_ID = base64decode(data.oci_secrets_secretbundle.AWS_ACCESS_KEY_ID_bundle.secret_bundle_content.0.content)
+              AWS_SECRET_ACCESS_KEY = base64decode(data.oci_secrets_secretbundle.AWS_SECRET_ACCESS_KEY_bundle.secret_bundle_content.0.content)
+            }
 
             command               = try(containers.value.command, null)
             arguments             = try(containers.value.arguments, null)
