@@ -36,9 +36,35 @@ resource "oci_container_instances_container_instance" "demo_container_instance" 
     skip_source_dest_check = true
   }
 
-  containers {
-    image_url    = "scylladb/scylla:5.4"
-    display_name = "ScyllaDB base image"
-    arguments = ["--listen-address=${var.private_ip}","--rpc-address=${var.private_ip}","--seed-provider-parameters seeds=${var.private_ip}","--alternator-address=${var.private_ip}","--alternator-port=8000","--alternator-write-isolation=always"]
+  dynamic "containers" {
+        for_each = var.containers
+        content {
+            display_name          = try(containers.value.display_name, null)
+            image_url             = containers.value.image_url
+            environment_variables = try(containers.value.environment_variables, null)
+
+            command               = try(containers.value.command, null)
+            arguments             = try(containers.value.arguments, null)
+
+            dynamic "volume_mounts" {
+                for_each = containers.value.volume_mounts == null ? [] : containers.value.volume_mounts
+                content {
+                    volume_name = volume_mounts.value.volume_name
+                    mount_path  = volume_mounts.value.mount_path
+                }
+            }
+
+            resource_config {
+                memory_limit_in_gbs = try(containers.value.memory_limit_in_gbs, null)
+                vcpus_limit         = try(containers.value.vcpus_limit, null)
+            }
+
+            working_directory       = try(containers.value.working_directory, null)
+        }
   }
+  # containers {
+  #   image_url    = "scylladb/scylla:5.4"
+  #   display_name = "ScyllaDB base image"
+  #   arguments = ["--listen-address=${var.private_ip}","--rpc-address=${var.private_ip}","--seed-provider-parameters seeds=${var.private_ip}","--alternator-address=${var.private_ip}","--alternator-port=8000","--alternator-write-isolation=always"]
+  # }
 }
