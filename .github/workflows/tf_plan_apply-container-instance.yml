@@ -7,6 +7,13 @@ on:
       - 'terraform/container-instance/**'
 
 jobs:
+  tf_step_plan:
+    runs-on: OCI_hosted
+    name: Inject TF_VARS
+    env:
+      TF_VAR_AWS_ACCESS_KEY_ID: ${{ secrets.aws_access_key }}
+      TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.aws_secret_key }}
+
   tf_plan_apply_default:
     uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@environments
     with:
