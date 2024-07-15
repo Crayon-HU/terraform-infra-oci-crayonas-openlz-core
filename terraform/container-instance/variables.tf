@@ -21,30 +21,30 @@ variable "subnet_ocid" {
 }
 variable "private_ip" {}
 
-variable "containers" {
-    type = list(object({
-        display_name          = optional(string)
-        image_url             = string
-        environment_variables = optional(map(string))
+# variable "containers" {
+#     type = list(object({
+#         display_name          = optional(string)
+#         image_url             = string
+#         environment_variables = optional(map(string))
 
-        command               = optional(list(string))
-        arguments             = optional(list(string))
+#         command               = optional(list(string))
+#         arguments             = optional(list(string))
 
-        volume_mounts         = optional(list(object({
-            volume_name = string
-            mount_path  = string
-        })))
+#         volume_mounts         = optional(list(object({
+#             volume_name = string
+#             mount_path  = string
+#         })))
 
-        resource_config = optional(map(object({
-            memory_limit_in_gbs = optional(number)
-            vcpus_limit         = optional(number)
-        })))
+#         resource_config = optional(map(object({
+#             memory_limit_in_gbs = optional(number)
+#             vcpus_limit         = optional(number)
+#         })))
 
-        memory_limit_in_gbs   = optional(number)
-        vcpus_limit           = optional(number)
+#         memory_limit_in_gbs   = optional(number)
+#         vcpus_limit           = optional(number)
 
-        working_directory     = optional(string)
-    }))
+#         working_directory     = optional(string)
+#     }))
 
-    description = "The containers to create on this container instance."
-}
+#     description = "The containers to create on this container instance."
+# }
