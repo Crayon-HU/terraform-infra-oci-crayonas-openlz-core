@@ -27,7 +27,7 @@ terraform {
 
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
-      dynamodb = "http://10.0.1.86:8000"
+      dynamodb = "http://scylladb86.sub05221255551.tfvcn.oraclevcn.com:8000"
     }
     key = "compartments.tfstate"
     dynamodb_table = "states-ci86"
