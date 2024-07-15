@@ -27,10 +27,10 @@ terraform {
 
     endpoints = {
       s3 = "https://ax7yjiuzhoio.compat.objectstorage.eu-amsterdam-1.oraclecloud.com"
-      dynamodb = "http://scylladb86.sub05221255551.tfvcn.oraclevcn.com:8000"
+      dynamodb = "http://scylladb.sub05221255551.tfvcn.oraclevcn.com:8000"
     }
     key = "compartments.tfstate"
-    dynamodb_table = "states-ci86"
+    dynamodb_table = "s3-state-locks"
   }
   # backend "pg" {
   #   conn_str = "postgres://pxe2wx6joe2zfcn7xdtad5hyqydi5q-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/core"

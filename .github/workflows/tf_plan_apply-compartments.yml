@@ -1,13 +1,13 @@
 name: Terraform workflow - compartments
 
-on:
-  workflow_dispatch:
-
 # on:
-#   pull_request:
-#     types: [opened, synchronize, reopened]
-#     paths:
-#       - 'terraform/compartments/**'
+#   workflow_dispatch:
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'terraform/compartments/**'
 
 jobs:
   # tf_plan_apply_test:
