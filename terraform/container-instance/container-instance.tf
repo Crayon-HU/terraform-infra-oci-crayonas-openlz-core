@@ -46,14 +46,6 @@ resource "oci_container_instances_container_instance" "demo_container_instance" 
             command               = try(containers.value.command, null)
             arguments             = try(containers.value.arguments, null)
 
-            dynamic "volume_mounts" {
-                for_each = containers.value.volume_mounts == null ? [] : containers.value.volume_mounts
-                content {
-                    volume_name = volume_mounts.value.volume_name
-                    mount_path  = volume_mounts.value.mount_path
-                }
-            }
-
             resource_config {
                 memory_limit_in_gbs = try(containers.value.memory_limit_in_gbs, null)
                 vcpus_limit         = try(containers.value.vcpus_limit, null)
