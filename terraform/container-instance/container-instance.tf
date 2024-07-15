@@ -39,6 +39,6 @@ resource "oci_container_instances_container_instance" "demo_container_instance" 
   containers {
     image_url    = "scylladb/scylla:5.4"
     display_name = "ScyllaDB base image"
-    arguments = "--listen-address=${var.private_ip},--rpc-address=${var.private_ip},--seed-provider-parameters seeds=${var.private_ip},--alternator-address=${var.private_ip},--alternator-port=8000,--alternator-write-isolation=always"
+    arguments = ["--listen-address=${var.private_ip}","--rpc-address=${var.private_ip}","--seed-provider-parameters seeds=${var.private_ip}","--alternator-address=${var.private_ip}","--alternator-port=8000","--alternator-write-isolation=always"]
   }
 }
