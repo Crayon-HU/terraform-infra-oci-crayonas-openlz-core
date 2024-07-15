@@ -37,7 +37,7 @@ resource "oci_container_instances_container_instance" "demo_container_instance" 
   }
 
   dynamic "containers" {
-        for_each = var.containers
+        for_each = local.containers
         content {
             display_name          = try(containers.value.display_name, null)
             image_url             = containers.value.image_url

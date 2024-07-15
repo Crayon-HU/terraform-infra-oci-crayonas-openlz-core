@@ -13,10 +13,6 @@ variable "FINGERPRINT" {
   sensitive = true
 }
 
-variable "TABLE_NAME" {
-  default = "s3_state_locks"
-}
-
 variable "project_name" {
   default = "scylladb"
 }
