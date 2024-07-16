@@ -17,3 +17,5 @@ variable "project_name" {}
 variable "subnet_ocid" {}
 variable "compartment_ocid" {}
 variable "private_ip" {}
+variable "aws_access_key_id_secret_ocid" {}
+variable "aws_secret_access_key_secret_ocid" {}

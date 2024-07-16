@@ -1,6 +1,6 @@
 #HU_compartment
 data "oci_identity_compartment" "parent" {
-  id = "ocid1.compartment.oc1..aaaaaaaavjic26327yzpleqiu77qvfaxxjobtsuili265urpkh7ac63afo3q"
+  id = var.compartment_ocid
 }
 
 data "oci_identity_availability_domains" "local_ads" {
@@ -10,12 +10,12 @@ data "oci_identity_availability_domains" "local_ads" {
 
 data "oci_secrets_secretbundle" "AWS_ACCESS_KEY_ID_bundle" {
     #Required
-    secret_id = "ocid1.vaultsecret.oc1.eu-amsterdam-1.amaaaaaa343laxaaimhzsf4lvy7twkc53xuisrturfxplizonmq7jwwm42sa"
+    secret_id = var.aws_access_key_id_secret_ocid
 }
 
 data "oci_secrets_secretbundle" "AWS_SECRET_ACCESS_KEY_bundle" {
     #Required
-    secret_id = "ocid1.vaultsecret.oc1.eu-amsterdam-1.amaaaaaa343laxaaqjqiklctjj75mlcckukjy6z3jbsyowqpimsdfwwvcw6q"
+    secret_id = var.aws_secret_access_key_secret_ocid
 }
 
 resource "oci_container_instances_container_instance" "demo_container_instance" {
@@ -41,8 +41,8 @@ resource "oci_container_instances_container_instance" "demo_container_instance" 
     display_name          = "${var.project_name}-container-instance-vnic"
     is_public_ip_assigned = false
     nsg_ids               = []
-    hostname_label = var.project_name
-    private_ip = var.private_ip
+    hostname_label        = var.project_name
+    private_ip            = var.private_ip
     skip_source_dest_check = true
   }
 
@@ -67,9 +67,4 @@ resource "oci_container_instances_container_instance" "demo_container_instance" 
             working_directory       = try(containers.value.working_directory, null)
         }
   }
-  # containers {
-  #   image_url    = "scylladb/scylla:5.4"
-  #   display_name = "ScyllaDB base image"
-  #   arguments = ["--listen-address=${var.private_ip}","--rpc-address=${var.private_ip}","--seed-provider-parameters seeds=${var.private_ip}","--alternator-address=${var.private_ip}","--alternator-port=8000","--alternator-write-isolation=always"]
-  # }
 }
