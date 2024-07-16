@@ -7,6 +7,14 @@ provider "oci" {
   region       = "eu-amsterdam-1"
 }
 
+provider "postgresql" {
+  host            = var.POSTGRES_SERVER_IP
+  port            = var.POSTGRES_SERVER_PORT
+  superuser = false
+  sslmode         = "require"
+  connect_timeout = 15
+}
+
 terraform {
   required_version = ">= 1.6.0"
   required_providers {
@@ -14,17 +22,16 @@ terraform {
       source  = "oracle/oci"
       version = "5.38.0"
     }
+    postgresql = {
+      source = "cyrilgdn/postgresql"
+      version = "1.22.0"
+    }
   }
   backend "pg" {
     conn_str = "postgres://pxe2wx6joe2zfcn7xdtad5hyqydi5q-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/core"
   }
 }
 
-data "terraform_remote_state" "cmp" {
-  backend = "pg"
-  config = {
-    conn_str = "postgres://pxe2wx6joe2zfcn7xdtad5hyqydi5q-primary.postgresql.eu-amsterdam-1.oc1.oraclecloud.com/core"
-    schema_name = "terraform/compartments"
-  }
-}
+
+
 

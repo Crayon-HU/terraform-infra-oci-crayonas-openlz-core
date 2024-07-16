@@ -1,5 +1,8 @@
 name: Terraform workflow - compartments
 
+# on:
+#   workflow_dispatch:
+
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -7,21 +10,48 @@ on:
       - 'terraform/compartments/**'
 
 jobs:
-  tf_plan_apply:
-    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@pg-backend
+  # tf_plan_apply_test:
+  #   uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@environments
+  #   with:
+  #     github_env: test
+  #     runner: OCI_hosted
+  #     backend_type: pg
+  #     infra_repo: terraform-infra-oci-crayonas-openlz-core
+  #     infra_repo_ref: bootstrap
+  #     config_repo: terraform-config-oci-crayonas-openlz-core
+  #     config_repo_ref: init
+  #     config_directory: compartments
+  #     # checkov_scan: true
+  #     provider_oci: true
+  #     github_owner: ${{ vars.GH_CRAYONHU_ORG }}
+  #   secrets:
+  #     # pg_backend_username: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_USERNAME }}
+  #     # pg_backend_password: ${{ secrets.OCI_CRAYON_CORE_PGBACKEND_PASSWORD }}
+  #     pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
+  #     pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
+  #     oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
+  #     oci_user: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
+  #     oci_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
+  #     oci_fingerprint: ${{ secrets.OCI_CRAYON_LEDERMAYER_FINGERPRINT }}
+  #     github_pat: ${{ secrets.GH_CRAYONHU_PAT }}
+  tf_plan_apply_default:
+    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@environments
     with:
       runner: OCI_hosted
-      backend_type: pg
-      config_directory: terraform/compartments
+      backend_type: s3
+      infra_repo: terraform-infra-oci-crayonas-openlz-core
+      infra_repo_ref: bootstrap
+      config_repo: terraform-config-oci-crayonas-openlz-core
+      config_repo_ref: init
+      config_directory: compartments
       # checkov_scan: true
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
-
     secrets:
-      # aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
-      # aws_secret_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_SECRET_KEY }}
-      pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
-      pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
+      # pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
+      # pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
+      aws_access_key: ${{ secrets.OCI_CRAYONHU_SPINNERBOT_ACCESS_KEY }}
+      aws_secret_key: ${{ secrets.OCI_CRAYONHU_SPINNERBOT_SECRET_KEY }}
       oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
       oci_user: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
       oci_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}

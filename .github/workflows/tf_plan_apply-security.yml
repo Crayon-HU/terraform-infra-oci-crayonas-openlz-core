@@ -1,24 +1,29 @@
 name: Terraform workflow - security
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - 'terraform/security/**'
+  workflow_dispatch:
+
+# on:
+#   pull_request:
+#     types: [opened, synchronize, reopened]
+#     paths:
+#       - 'terraform/security/**'
 
 jobs:
   tf_plan_apply:
-    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@pg-backend
+    uses: Crayon-HU/github-workflows/.github/workflows/tf_workflow_plan_apply.yml@v1.2.0
     with:
       runner: OCI_hosted
       backend_type: pg
-      config_directory: terraform/security
+      infra_repo: terraform-infra-oci-crayonas-openlz-core
+      infra_repo_ref: bootstrap
+      config_repo: terraform-config-oci-crayonas-openlz-core
+      config_repo_ref: init
+      config_directory: security
       # checkov_scan: true
       provider_oci: true
       github_owner: ${{ vars.GH_CRAYONHU_ORG }}
     secrets:
-      # aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
-      # aws_secret_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_SECRET_KEY }}
       pg_backend_username: ${{ secrets.OCI_PGBACKEND_USER }}
       pg_backend_password: ${{ secrets.OCI_PGBACKEND_PASSWORD }}
       oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
