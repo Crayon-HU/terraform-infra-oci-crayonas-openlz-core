@@ -1,0 +1,24 @@
+name: Terraform workflow - security
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'terraform/security/**'
+
+jobs:
+  call_terraform_init_plan_apply:
+    uses: Crayon-HU/github-workflows/.github/workflows/workflow_tf_init_plan_apply.yml@init
+    with:
+      backend_type: s3
+      config_directory: terraform/security
+      provider_oci: true
+      github_owner: ${{ vars.GH_CRAYONHU_ORG }}
+    secrets:
+      aws_access_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_ACCESS_KEY }}
+      aws_secret_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_SECRET_KEY }}
+      oci_tenancy: ${{ secrets.OCI_CRAYON_TENANCY }}
+      oci_user: ${{ secrets.OCI_CRAYON_LEDERMAYER_USER }}
+      oci_key: ${{ secrets.OCI_CRAYON_LEDERMAYER_KEY }}
+      oci_fingerprint: ${{ secrets.OCI_CRAYON_LEDERMAYER_FINGERPRINT }}
+      github_pat: ${{ secrets.GH_CRAYONHU_PAT }}
